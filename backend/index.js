@@ -11,5 +11,5 @@ app.use('/api/auth', require('./routes/auth'))
 app.use('/api/notes', require('./routes/note'))
 
 app.listen(port, () => {
-  console.log(`Example app listening on http://localhost:${port}`)
+  console.log(`Cloud Notes - is live http://localhost:${port}`)
 })

@@ -1,21 +1,101 @@
 import { useState } from "react";
 import NoteContext from "./noteContext";
 const NoteState = (props) => {
-    const s1 = {
-        "name": "Pankaj",
-        "age": "22"
-    }
-    const [state, setstate] = useState(s1);
-    const update = () => {
-        setTimeout(() => {
-            setstate({
-                "name": "Sahil",
-                "age": "20"
-            })
-        }, 2000);
-    }
+    const initialState = [
+        {
+            "_id": "68e8f73746859df1ae485404",
+            "user": "68e8ccad7157ae6d771763f5",
+            "title": "title",
+            "description": "description blalalal",
+            "tag": "personal",
+            "status": "incomplete",
+            "date": "2025-10-10T12:08:23.380Z",
+            "__v": 0
+        },
+        {
+            "_id": "68ea363682c94a81260fdeb8",
+            "user": "68e8ccad7157ae6d771763f5",
+            "title": "Holliday plan",
+            "description": "Enjoy the summer vacations",
+            "tag": "trip",
+            "status": "incomplete",
+            "date": "2025-10-11T10:49:26.684Z",
+            "__v": 0
+        },
+        {
+            "_id": "68ea40e90cb68394e02c90ed",
+            "user": "68e8ccad7157ae6d771763f5",
+            "title": "Holliday plan",
+            "description": "Enjoy the summer vacations",
+            "tag": "trip",
+            "status": "incomplete",
+            "date": "2025-10-11T11:35:05.134Z",
+            "__v": 0
+        },
+        {
+            "_id": "68e8f73746859df1ae485404",
+            "user": "68e8ccad7157ae6d771763f5",
+            "title": "title",
+            "description": "description blalalal",
+            "tag": "personal",
+            "status": "incomplete",
+            "date": "2025-10-10T12:08:23.380Z",
+            "__v": 0
+        },
+        {
+            "_id": "68ea363682c94a81260fdeb8",
+            "user": "68e8ccad7157ae6d771763f5",
+            "title": "Holliday plan",
+            "description": "Enjoy the summer vacations",
+            "tag": "trip",
+            "status": "incomplete",
+            "date": "2025-10-11T10:49:26.684Z",
+            "__v": 0
+        },
+        {
+            "_id": "68ea40e90cb68394e02c90ed",
+            "user": "68e8ccad7157ae6d771763f5",
+            "title": "Holliday plan",
+            "description": "Enjoy the summer vacations",
+            "tag": "trip",
+            "status": "incomplete",
+            "date": "2025-10-11T11:35:05.134Z",
+            "__v": 0
+        },
+        {
+            "_id": "68e8f73746859df1ae485404",
+            "user": "68e8ccad7157ae6d771763f5",
+            "title": "title",
+            "description": "description blalalal",
+            "tag": "personal",
+            "status": "incomplete",
+            "date": "2025-10-10T12:08:23.380Z",
+            "__v": 0
+        },
+        {
+            "_id": "68ea363682c94a81260fdeb8",
+            "user": "68e8ccad7157ae6d771763f5",
+            "title": "Holliday plan",
+            "description": "Enjoy the summer vacations",
+            "tag": "trip",
+            "status": "incomplete",
+            "date": "2025-10-11T10:49:26.684Z",
+            "__v": 0
+        },
+        {
+            "_id": "68ea40e90cb68394e02c90ed",
+            "user": "68e8ccad7157ae6d771763f5",
+            "title": "Holliday plan",
+            "description": "Enjoy the summer vacations",
+            "tag": "trip",
+            "status": "incomplete",
+            "date": "2025-10-11T11:35:05.134Z",
+            "__v": 0
+        },
+    ]
+const [notes, setNotes] = useState(initialState)
     return (
-        <NoteContext.Provider value={{ state, update }}>
+        <NoteContext.Provider value={{notes,setNotes}}>
             {props.children}
         </NoteContext.Provider>
     )
