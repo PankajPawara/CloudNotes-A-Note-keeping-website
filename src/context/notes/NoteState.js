@@ -3,7 +3,7 @@ import NoteContext from "./noteContext";
 const NoteState = (props) => {
     const initialState = [
         {
-            "_id": "68e8f73746859df1ae485404",
+            "_id": "68e8f7374fs6859df1ae485404",
             "user": "68e8ccad7157ae6d771763f5",
             "title": "title",
             "description": "description blalalal",
@@ -13,7 +13,7 @@ const NoteState = (props) => {
             "__v": 0
         },
         {
-            "_id": "68ea363682c94a81260fdeb8",
+            "_id": "68ea36368sf2c94a81260fdeb8",
             "user": "68e8ccad7157ae6d771763f5",
             "title": "Holliday plan",
             "description": "Enjoy the summer vacations",
@@ -23,7 +23,7 @@ const NoteState = (props) => {
             "__v": 0
         },
         {
-            "_id": "68ea40e90cb68394e02c90ed",
+            "_id": "68ea40e90cbge68394e02c90ed",
             "user": "68e8ccad7157ae6d771763f5",
             "title": "Holliday plan",
             "description": "Enjoy the summer vacations",
@@ -33,7 +33,7 @@ const NoteState = (props) => {
             "__v": 0
         },
         {
-            "_id": "68e8f73746859df1ae485404",
+            "_id": "68e8fsf73746859df1ae485404",
             "user": "68e8ccad7157ae6d771763f5",
             "title": "title",
             "description": "description blalalal",
@@ -43,7 +43,7 @@ const NoteState = (props) => {
             "__v": 0
         },
         {
-            "_id": "68ea363682c94a81260fdeb8",
+            "_id": "68ea363682afs94a81260nffdeb8",
             "user": "68e8ccad7157ae6d771763f5",
             "title": "Holliday plan",
             "description": "Enjoy the summer vacations",
@@ -53,7 +53,7 @@ const NoteState = (props) => {
             "__v": 0
         },
         {
-            "_id": "68ea40e90cb68394e02c90ed",
+            "_id": "68ea40e90cbd68394e02c90fned",
             "user": "68e8ccad7157ae6d771763f5",
             "title": "Holliday plan",
             "description": "Enjoy the summer vacations",
@@ -63,7 +63,7 @@ const NoteState = (props) => {
             "__v": 0
         },
         {
-            "_id": "68e8f73746859df1ae485404",
+            "_id": "68e8f737468fes59df1ae485dnd404",
             "user": "68e8ccad7157ae6d771763f5",
             "title": "title",
             "description": "description blalalal",
@@ -73,7 +73,7 @@ const NoteState = (props) => {
             "__v": 0
         },
         {
-            "_id": "68ea363682c94a81260fdeb8",
+            "_id": "68ea363zvh682dvzc94a81260tefdeb8",
             "user": "68e8ccad7157ae6d771763f5",
             "title": "Holliday plan",
             "description": "Enjoy the summer vacations",
@@ -83,7 +83,7 @@ const NoteState = (props) => {
             "__v": 0
         },
         {
-            "_id": "68ea40e90cb68394e02c90ed",
+            "_id": "68ea40e90csdfb68394e02c9t0ed",
             "user": "68e8ccad7157ae6d771763f5",
             "title": "Holliday plan",
             "description": "Enjoy the summer vacations",
