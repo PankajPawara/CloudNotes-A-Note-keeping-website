@@ -1,101 +1,86 @@
-import { useState } from "react";
+import { useState,useContext } from "react";
 import NoteContext from "./noteContext";
+import { AlertContext } from "../alerts/AlertState";
+
 const NoteState = (props) => {
-    const initialState = [
-        {
-            "_id": "68e8f7374fs6859df1ae485404",
-            "user": "68e8ccad7157ae6d771763f5",
-            "title": "title",
-            "description": "description blalalal",
-            "tag": "personal",
-            "status": "incomplete",
-            "date": "2025-10-10T12:08:23.380Z",
-            "__v": 0
-        },
-        {
-            "_id": "68ea36368sf2c94a81260fdeb8",
-            "user": "68e8ccad7157ae6d771763f5",
-            "title": "Holliday plan",
-            "description": "Enjoy the summer vacations",
-            "tag": "trip",
-            "status": "incomplete",
-            "date": "2025-10-11T10:49:26.684Z",
-            "__v": 0
-        },
-        {
-            "_id": "68ea40e90cbge68394e02c90ed",
-            "user": "68e8ccad7157ae6d771763f5",
-            "title": "Holliday plan",
-            "description": "Enjoy the summer vacations",
-            "tag": "trip",
-            "status": "incomplete",
-            "date": "2025-10-11T11:35:05.134Z",
-            "__v": 0
-        },
-        {
-            "_id": "68e8fsf73746859df1ae485404",
-            "user": "68e8ccad7157ae6d771763f5",
-            "title": "title",
-            "description": "description blalalal",
-            "tag": "personal",
-            "status": "incomplete",
-            "date": "2025-10-10T12:08:23.380Z",
-            "__v": 0
-        },
-        {
-            "_id": "68ea363682afs94a81260nffdeb8",
-            "user": "68e8ccad7157ae6d771763f5",
-            "title": "Holliday plan",
-            "description": "Enjoy the summer vacations",
-            "tag": "trip",
-            "status": "incomplete",
-            "date": "2025-10-11T10:49:26.684Z",
-            "__v": 0
-        },
-        {
-            "_id": "68ea40e90cbd68394e02c90fned",
-            "user": "68e8ccad7157ae6d771763f5",
-            "title": "Holliday plan",
-            "description": "Enjoy the summer vacations",
-            "tag": "trip",
-            "status": "incomplete",
-            "date": "2025-10-11T11:35:05.134Z",
-            "__v": 0
-        },
-        {
-            "_id": "68e8f737468fes59df1ae485dnd404",
-            "user": "68e8ccad7157ae6d771763f5",
-            "title": "title",
-            "description": "description blalalal",
-            "tag": "personal",
-            "status": "incomplete",
-            "date": "2025-10-10T12:08:23.380Z",
-            "__v": 0
-        },
-        {
-            "_id": "68ea363zvh682dvzc94a81260tefdeb8",
-            "user": "68e8ccad7157ae6d771763f5",
-            "title": "Holliday plan",
-            "description": "Enjoy the summer vacations",
-            "tag": "trip",
-            "status": "incomplete",
-            "date": "2025-10-11T10:49:26.684Z",
-            "__v": 0
-        },
-        {
-            "_id": "68ea40e90csdfb68394e02c9t0ed",
-            "user": "68e8ccad7157ae6d771763f5",
-            "title": "Holliday plan",
-            "description": "Enjoy the summer vacations",
-            "tag": "trip",
-            "status": "incomplete",
-            "date": "2025-10-11T11:35:05.134Z",
-            "__v": 0
-        },
-    ]
-const [notes, setNotes] = useState(initialState)
+    const host = "http://localhost:5000";
+    const initialState = []
+    const [notes, setNotes] = useState(initialState)
+    const alertContext = useContext(AlertContext);
+    const { showAlert } = alertContext;
+
+    // Add a Note
+    const addNote = async (title, description, tag) => {
+        // API Call
+        const response = await fetch(`${host}/api/notes/addnote`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjhlOGNjYWQ3MTU3YWU2ZDc3MTc2M2Y1In0sImlhdCI6MTc2MDA4ODIxMX0.zqaaZ_uY5c0tA8DK_RZ801F8iBNRfX0l0g8O_JbivHk",
+            },
+            body: JSON.stringify({ title, description, tag })
+        });
+        const note = await response.json();
+        setNotes(notes.concat(note));
+        showAlert("Note Created Successfully", "success");
+    }
+
+    // Get all Notes
+    const getNotes = async () => {
+        // API Call
+        const response = await fetch(`${host}/api/notes/getallnotes`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjhlOGNjYWQ3MTU3YWU2ZDc3MTc2M2Y1In0sImlhdCI6MTc2MDA4ODIxMX0.zqaaZ_uY5c0tA8DK_RZ801F8iBNRfX0l0g8O_JbivHk",
+            },
+        });
+        setNotes(await response.json());
+    }
+
+    // Edit a Note
+    const editNote = async (id, title, description, tag) => {
+        // API Call
+        const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjhlOGNjYWQ3MTU3YWU2ZDc3MTc2M2Y1In0sImlhdCI6MTc2MDA4ODIxMX0.zqaaZ_uY5c0tA8DK_RZ801F8iBNRfX0l0g8O_JbivHk",
+            },
+            body: JSON.stringify({ title, description, tag })
+        });
+        response.json();
+        // console.log(await response.json());
+
+        for (let index = 0; index < notes.length; index++) {
+            const element = notes[index];
+            if (element._id === id) {
+                element.title = title;
+                element.description = description;
+                element.tag = tag;
+                break;
+            }
+        }
+        showAlert("Note Updated Successfully", "success");
+        setNotes(notes);
+    }
+    // Delete a Note
+    const deleteNote = async (id) => {
+        // API Call
+        const response = await fetch(`${host}/api/notes/delete/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjhlOGNjYWQ3MTU3YWU2ZDc3MTc2M2Y1In0sImlhdCI6MTc2MDA4ODIxMX0.zqaaZ_uY5c0tA8DK_RZ801F8iBNRfX0l0g8O_JbivHk",
+            },
+        });
+        response.json();
+        const newNotes = notes.filter((note) => { return note._id !== id })
+        setNotes(newNotes);
+        showAlert("Note Deleted Successfully", "success");
+    }
     return (
-        <NoteContext.Provider value={{notes,setNotes}}>
+        <NoteContext.Provider value={{ notes, setNotes, getNotes, addNote, editNote, deleteNote }}>
             {props.children}
         </NoteContext.Provider>
     )

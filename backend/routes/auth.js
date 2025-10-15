@@ -17,14 +17,15 @@ router.post('/createuser', [
 ], async (req, res) => {
     //if there are errors then send bad request and the error   
     const errors = validationResult(req);
+    let success = false;
     if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+        return res.status(400).json({success, errors: errors.array() });
     }
     try {
         // check wheather the user with same email is exist or not
         let user = await User.findOne({ email: req.body.email });
         if (user) {
-            return res.status(400).json({ error: "User with the same email is already exist" });
+            return res.status(400).json({success, error: "User with the same email is already exist" });
         }
         const salt = bcrypt.genSaltSync(10);
         const passHash = bcrypt.hashSync(req.body.password, salt);
@@ -41,7 +42,8 @@ router.post('/createuser', [
             }
         }
         const jwtToken = jwt.sign(data, JWT_SECRET);
-        res.json({ jwtToken });
+        success = true;
+        res.json({ success, jwtToken });
 
     } catch (error) {
         console.error(error.message);
@@ -57,19 +59,20 @@ router.post('/login', [
 ], async (req, res) => {
     //if there are errors then send bad request and the error   
     const errors = validationResult(req);
+    let success = false;
     if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+        return res.status(400).json({success, errors: errors.array() });
     }
     const { email, password } = req.body;
     try {
         let user = await User.findOne({ email });
         if (!user) {
-            return res.status(400).json({ error: "Please enter valid details to login" });
+            return res.status(400).json({success, error: "Please enter valid details to login" });
         }
 
         const passCompare = bcrypt.compareSync(password, user.password);
         if (!passCompare) {
-            return res.status(400).json({ error: "Please enter valid details to login" });
+            return res.status(400).json({success, error: "Please enter valid details to login" });
         }
         const data = {
             user: {
@@ -77,7 +80,8 @@ router.post('/login', [
             }
         }
         const jwtToken = jwt.sign(data, JWT_SECRET);
-        res.json({ jwtToken });
+        success = true;
+        res.json({ success, jwtToken });
 
     } catch (error) {
         console.error(error);
