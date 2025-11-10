@@ -37,8 +37,11 @@ router.post('/createuser', [
         const data = {
             user: {
                 id: user.id,
+                name: req.body.name
             }
         }
+        console.log("auth data: "+data);
+        
         const jwtToken = jwt.sign(data, process.env.JWT_SECRET);
         success = true;
         res.json({ success, jwtToken });
@@ -75,6 +78,7 @@ router.post('/login', [
         const data = {
             user: {
                 id: user.id,
+                name: user.name
             }
         }
         const jwtToken = jwt.sign(data, process.env.JWT_SECRET);

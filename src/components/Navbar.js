@@ -1,7 +1,16 @@
 import { Link, useLocation } from 'react-router'
+import {jwtDecode} from "jwt-decode";
 
 const Navbar = () => {
-    let location = useLocation()
+
+    let location = useLocation();
+    const token = localStorage.getItem("token");
+    let userName = "";
+
+    if (token) {
+        const decoded = jwtDecode(token);
+        userName = decoded.user.name;
+    }
     return (
         <nav className="navbar navbar-expand-lg sticky-top navbar-light" style={{ backgroundColor: "#e3f2fd" }}>
             <div className="container-fluid fw-bold">
@@ -21,9 +30,9 @@ const Navbar = () => {
                     <form className="d-flex">
                         {
                             !localStorage.getItem('token') ? <div>
-                                <Link className="btn btn-outline-success mx-2 fw-bold border-2" role="button" to="/login">Login <i class="fa-solid fa-arrow-right-to-bracket"></i></Link>
+                                <Link className="btn btn-outline-success mx-2 fw-bold border-2" role="button" to="/login">Login <i className="fa-solid fa-arrow-right-to-bracket"></i></Link>
                                 <Link className="btn btn-outline-primary mx-2 fw-bold border-2" role="button" to="/signup">Signup <i className="fa-solid fa-user-plus"></i></Link>
-                            </div> : <Link onClick={() => { localStorage.removeItem('token');}} className="btn btn-outline-danger mx-2 fw-bolder border-2" role='button' to="/login">Logout <i className="fa-solid fa-arrow-right-from-bracket"></i></Link>
+                            </div> : <><span className='d-flex align-items-center'>Hi, {userName}</span><Link onClick={() => { localStorage.removeItem('token'); }} className="btn btn-outline-danger mx-2 fw-bolder border-2" role='button' to="/login">Logout <i className="fa-solid fa-arrow-right-from-bracket"></i></Link></>
                         }
                     </form>
                 </div>
