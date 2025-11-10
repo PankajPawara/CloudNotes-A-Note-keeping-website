@@ -22,8 +22,8 @@ const Login = (props) => {
         if (json.success) {
             //redirect
             localStorage.setItem('token', json.jwtToken);
-            navigate("/");
             showAlert("Logged in successfully", "success");
+            navigate("/");
         } else {
             //show error
             showAlert("Invalid credentials", "danger");
@@ -35,7 +35,7 @@ const Login = (props) => {
     }
     return (
         <div className='container'>
-            <h2>Login</h2>
+            <h2>Please Login before accessing your notes</h2>
             <form onSubmit={handleLogin}>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email address</label>

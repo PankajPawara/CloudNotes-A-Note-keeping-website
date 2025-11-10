@@ -1,14 +1,21 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import noteContext from '../context/notes/noteContext';
 import NoteItem from './NoteItem';
+import { useNavigate } from 'react-router-dom';
 
 const Notes = () => {
     const context = useContext(noteContext);
+    const navigate = useNavigate();
     const { notes, getNotes, editNote } = context;
     const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "" });
 
     useEffect(() => {
-        getNotes();
+        if (localStorage.getItem('token')) {
+            getNotes();
+        }
+        else {
+            navigate("/login");
+        }
     }, [])
 
     const ref = useRef(null)
@@ -62,12 +69,19 @@ const Notes = () => {
                     </div>
                 </div>
             </div>
-            <div className="container my-3">
-                <div className="row mx-3">
-                    <h2>Your notes</h2>
-                    <div className="container mx-2">
-                        {notes.length === 0 && 'No notes to display'}
-                    </div>
+            <div className="container">
+                
+                <div className="container row mx-2" style={{ height: "100%", overflowY: "auto" }}>
+                    {notes.length === 0 && <div className="no-notes-wrapper text-center">
+                        <img
+                            src="https://cdn-icons-png.flaticon.com/512/6059/6059496.png"
+                            alt="No Notes"
+                            className="no-notes-img"
+                            height={'200px'}
+                        />
+                        <h3>No Notes Found</h3>
+                        <p>Add your first note to get started!</p>
+                    </div>}
                     {
                         notes.map((note) => {
                             return <NoteItem key={note._id} updateNote={updateNote} note={note} />

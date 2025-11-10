@@ -3,9 +3,9 @@ import { Link, useLocation } from 'react-router'
 const Navbar = () => {
     let location = useLocation()
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div className="container-fluid">
-                <Link className="navbar-brand" to="/">Cloud Notes</Link>
+        <nav className="navbar navbar-expand-lg sticky-top navbar-light" style={{ backgroundColor: "#e3f2fd" }}>
+            <div className="container-fluid fw-bold">
+                <Link className="navbar-brand fw-bolder" to="/">CloudNotes</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -18,9 +18,13 @@ const Navbar = () => {
                             <Link className={`nav-link ${location.pathname === "/about" ? "active" : ""}`} to="/about">About</Link>
                         </li>
                     </ul>
-                    <form className="d-flex" role="search">
-                        <Link className="btn btn-outline-success mx-2" role="button" to="/login">Login</Link>
-                        <Link className="btn btn-outline-primary mx-2" role="button" to="/signup">Signup</Link>
+                    <form className="d-flex">
+                        {
+                            !localStorage.getItem('token') ? <div>
+                                <Link className="btn btn-outline-success mx-2 fw-bold border-2" role="button" to="/login">Login <i class="fa-solid fa-arrow-right-to-bracket"></i></Link>
+                                <Link className="btn btn-outline-primary mx-2 fw-bold border-2" role="button" to="/signup">Signup <i className="fa-solid fa-user-plus"></i></Link>
+                            </div> : <Link onClick={() => { localStorage.removeItem('token');}} className="btn btn-outline-danger mx-2 fw-bolder border-2" role='button' to="/login">Logout <i className="fa-solid fa-arrow-right-from-bracket"></i></Link>
+                        }
                     </form>
                 </div>
             </div>

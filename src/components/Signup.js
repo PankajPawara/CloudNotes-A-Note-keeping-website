@@ -21,8 +21,8 @@ const Signup = (props) => {
         const json = await response.json();
         if (json.success) {
             localStorage.setItem('token', json.jwtToken);
-            navigate("/login");
             showAlert("Signup successful", "success");
+            navigate("/login");
         }
         else {
             showAlert("Invalid details", "danger");
@@ -33,7 +33,7 @@ const Signup = (props) => {
     }
     return (
         <div className='container'>
-            <h2>Signup</h2>
+            <h2>Please Signup before accessing your notes</h2>
             <form onSubmit={handleSignup}>
                 <div className="mb-3">
                     <label htmlFor="name" className="form-label">Name</label>
