@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const User = require('../models/User');
 const router = express.Router();
@@ -5,9 +6,6 @@ const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const fetchuser = require('../middleware/fetchuser')
-
-//Usually keep this in .env file
-const JWT_SECRET = "itsmebaby";
 
 // ROUTE 1: Create a user using: POST "/api/auth/createuser". No login required
 router.post('/createuser', [
@@ -41,7 +39,7 @@ router.post('/createuser', [
                 id: user.id,
             }
         }
-        const jwtToken = jwt.sign(data, JWT_SECRET);
+        const jwtToken = jwt.sign(data, process.env.JWT_SECRET);
         success = true;
         res.json({ success, jwtToken });
 
@@ -79,7 +77,7 @@ router.post('/login', [
                 id: user.id,
             }
         }
-        const jwtToken = jwt.sign(data, JWT_SECRET);
+        const jwtToken = jwt.sign(data, process.env.JWT_SECRET);
         success = true;
         res.json({ success, jwtToken });
 

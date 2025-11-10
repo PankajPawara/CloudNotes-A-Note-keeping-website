@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
-const Mongo_URI = "mongodb+srv://cloudNotes:Pass%40123@cluster0.7dklqjh.mongodb.net/cloudnotes"
 
 const DB_Connect = async () => {
     try {
-       await mongoose.connect(Mongo_URI,)
+       await mongoose.connect(process.env.MONGO_URI,)
         console.log("Connected to MongoDB Successfully...\n")
     }
     catch (err) {
