@@ -7,8 +7,8 @@ const NoteItem = (props) => {
     const { note, updateNote } = props;
 
     return (
-        <div className="col-md-6 my-2">
-            <div className="card" style={{ width: "18rem" }}>
+        <div>
+            <div className="card">
                 <div className="card-body">
                     <div className="d-flex align-items-center justify-content-between">
                         <h5 className="card-title">{note.title}</h5>

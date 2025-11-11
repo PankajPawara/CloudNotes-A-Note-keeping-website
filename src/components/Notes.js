@@ -63,32 +63,41 @@ const Notes = () => {
                             </form>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" ref={refClose} className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" ref={refClose} className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                             <button disabled={note.etitle.length < 5 || note.edescription.length < 5} type="button" className="btn btn-primary" onClick={handleOnClick}>Save changes</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="container">
-                
-                <div className="container row mx-2" style={{ height: "100%", overflowY: "auto" }}>
-                    {notes.length === 0 && <div className="no-notes-wrapper text-center">
-                        <img
-                            src="https://cdn-icons-png.flaticon.com/512/6059/6059496.png"
-                            alt="No Notes"
-                            className="no-notes-img"
-                            height={'200px'}
-                        />
-                        <h3>No Notes Found</h3>
-                        <p>Add your first note to get started!</p>
-                    </div>}
-                    {
-                        notes.map((note) => {
-                            return <NoteItem key={note._id} updateNote={updateNote} note={note} />
-                        })
-                    }
-                </div>
+            <div className="container py-2">
+
+    <div className="row g-3" style={{ height: "100%", overflowY: "auto" }}>
+
+        {/* If no notes */}
+        {notes.length === 0 && (
+            <div className="col-12 text-center d-flex flex-column align-items-center justify-content-center" style={{ height: "70vh" }}>
+                <img
+                    src="https://cdn-icons-png.flaticon.com/512/6059/6059496.png"
+                    alt="No Notes"
+                    className="no-notes-img mb-3"
+                    style={{ width: "180px", maxWidth: "80%" }}
+                />
+                <h3>No Notes Found</h3>
+                <p className="text-muted">Add your first note to get started!</p>
             </div>
+        )}
+
+        {/* Notes List */}
+        {notes.map((note) => (
+            <div key={note._id} className="d-flex flex-column flex-grow-1 col-12 col-sm-12 col-md-6 ">
+                <NoteItem updateNote={updateNote} note={note} />
+            </div>
+        ))}
+
+    </div>
+    
+</div>
+
         </>
     )
 }

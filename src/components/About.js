@@ -1,9 +1,8 @@
-import React from 'react'
 
 const About = () => {
   return (
     <div>
-      <div className="container">
+      <div className="container border rounded px-4 py-3 bg-light">
         <h2>About CloudNotes</h2>
         <p>CloudNotes is a simple and efficient note-taking application designed to help you organize your thoughts, ideas, and tasks in one convenient place. Whether you're a student, professional, or just someone who loves to jot down notes, CloudNotes has got you covered.</p>
         <h3>Features:</h3>
