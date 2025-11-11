@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import { AlertContext } from "../context/alerts/AlertState";
 
 const Login = () => {
+    const host = process.env.REACT_APP_BACKEND_HOST;
     const [credentials, setCredentials] = useState({ email: "", password: "" });
     const navigate = useNavigate();
     const alertContext = useContext(AlertContext);
@@ -10,7 +11,7 @@ const Login = () => {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        const response = await fetch('http://localhost:5000/api/auth/login', {
+        const response = await fetch(`${host}/api/auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

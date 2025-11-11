@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AlertContext } from "../context/alerts/AlertState";
 
 const Signup = () => {
+    const host = process.env.REACT_APP_BACKEND_HOST;
     const [credentials, setCredentials] = useState({ name: "", email: "", password: "", cpassword: "" });
     const navigate = useNavigate();
     const alertContext = useContext(AlertContext);
@@ -11,7 +12,7 @@ const Signup = () => {
 
     const handleSignup = async (e) => {
         e.preventDefault();
-        const response = await fetch('http://localhost:5000/api/auth/createuser', {
+        const response = await fetch(`${host}/api/auth/createuser`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

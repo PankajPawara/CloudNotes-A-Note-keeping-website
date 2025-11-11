@@ -3,7 +3,7 @@ import NoteContext from "./noteContext";
 import { AlertContext } from "../alerts/AlertState";
 
 const NoteState = (props) => {
-    const host = "http://localhost:5000";
+    const host = process.env.REACT_APP_BACKEND_HOST;
     const initialState = []
     const [notes, setNotes] = useState(initialState)
     const alertContext = useContext(AlertContext);
